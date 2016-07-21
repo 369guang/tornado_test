@@ -4,12 +4,13 @@ from base import BaseHandler
 from models.post import Post
 import tornado.web
 
-from service import PostService
+#from service import PostService
 
 
 class MainHandler(BaseHandler):
     def get(self):
-        posts = PostService.get_list()
+        #posts = PostService.get_list()
+        posts = Post.select()
 
         self.render('index.html', posts=posts)
 
@@ -17,14 +18,19 @@ class MainHandler(BaseHandler):
 class HomeHandler(BaseHandler):
     # @tornado.web.authenticated
     def get(self):
-        posts = PostService.get_list()
+        # posts = PostService.get_list()
+        posts = Post.select()
         self.render('index.html', posts=posts)
 
     def post(self):
         title = self.get_argument("title", None)
         content = self.get_argument("content", None)
-        post = PostService.add(title, content)
-        self.write(post)
+        #post = PostService.add(title, content)
+        ps = Post()
+        ps.title = title
+        ps.content = content
+        ps.save()
+        self.write('good')
 
 
 class LoginHandler(BaseHandler):

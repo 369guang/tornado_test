@@ -7,15 +7,11 @@ import tornado.web
 import tornado.ioloop
 import tornado.httpserver
 from tornado.options import define, options
-import torndb
-
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
 
 from urls import urls
 
 import sys
-sys.path.append("/Users/sniper/learn-code/tornado-web/blog")
+#sys.path.append("/Users/sniper/learn-code/tornado-web/blog")
 
 define("port", default=8888, help="PORT", type=int)
 
